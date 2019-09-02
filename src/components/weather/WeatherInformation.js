@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as weatherActions from "../../redux/actions/WeatherAction";
-import {Table,Jumbotron,Container} from 'reactstrap'
+import {Table,Container,Button} from 'reactstrap'
+import {Link} from 'react-router-dom'
 
 
 
@@ -37,7 +38,7 @@ class WeatherInformation extends Component {
         </thead>
         <tbody>
           <tr>
-            <td>{this.props.Weather.name}</td>
+            <td><Link to={"detail"}>{this.props.Weather.name}</Link></td>
             <td>{this.props.main.temp}</td>
             <td>{this.props.main.temp_max}</td>
             <td>{this.props.main.temp_min}</td>

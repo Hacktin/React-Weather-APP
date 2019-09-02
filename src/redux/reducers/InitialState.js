@@ -2,6 +2,7 @@ export default{
     Weather:[],
     weather:[],
     coord:{},
-    main:{}
+    main:{},
+    sys:{}
     
 }

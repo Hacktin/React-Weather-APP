@@ -1,6 +1,7 @@
 import * as actionTypes from "./type/ActionTypes";
 import axios from "axios";
 
+
 export function GetWeather(weather) {
   return {
     type: actionTypes.GET_WEATHER_INFO,
@@ -26,6 +27,13 @@ export function GetCoordinate(weather){
 export function GetCityName(weather){
   return{
     type:actionTypes.GET_CİTY_NAME,
+    payload:weather
+  }
+}
+
+export function GetSystem(weather){
+  return{
+    type:actionTypes.GET_SYSTEM,
     payload:weather
   }
 }
@@ -68,6 +76,15 @@ export function GETCOORDİNATE(city,country){
   return function(dispatch){
     return RequestToAPI(city,country).then(response=>{
       dispatch(GetCoordinate(response.data))
+      console.log(response.data.coord)
+    })
+  }
+}
+
+export function GETSYSTEM(city,country){
+  return function(dispatch){
+    return RequestToAPI(city,country).then(response=>{
+      dispatch(GetSystem(response.data))
       console.log(response.data.coord)
     })
   }

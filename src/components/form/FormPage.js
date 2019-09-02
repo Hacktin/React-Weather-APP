@@ -3,8 +3,14 @@ import {Form,FormGroup,Label,Input,Button,Container} from 'reactstrap'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as weatherActions from "../../redux/actions/WeatherAction";
+import alertify from 'alertifyjs'
 
 class FormPage extends Component {
+
+
+    //componentDidMount(){
+     // this.props.actions.GETSYSTEM()
+    //}
 
     getWeather=(e)=>{
         const city=e.target.elements.city.value
@@ -16,9 +22,12 @@ class FormPage extends Component {
         this.props.actions.GETCITYNAME(city,country)
 
         e.preventDefault()
+
+        
     }
 
-    
+
+
 
   
     render() {
@@ -27,14 +36,15 @@ class FormPage extends Component {
  
               <Container fluid>
                 <Form onSubmit={this.getWeather}>
-                   <FormGroup>
-                     <Label for="city">City Name</Label>
+                   <FormGroup className="mb-2 mr-sm-2 mb-sm-0" >
+                     <Label className="mr-sm-2" for="city">City Name</Label>
                      <Input type="text" name="city"/>
                    </FormGroup>
-                   <FormGroup>
-                     <Label for="country">Country Name</Label>
+                   <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                     <Label className="mr-sm-2"  for="country">Country Name</Label>
                      <Input type="text" name="country"/>
                    </FormGroup>
+                   <br></br>
                  <Button className="btn btn-primary">Get Info</Button>
                 </Form>
                 </Container>
@@ -49,7 +59,8 @@ function MapStateToProp(state) {
       weather:state.GetWeatherReducer,
       Weather:state.GetCityReducer,
       main:state.GetTemparatureReducer,
-      coord:state.GetCoordinateReducer
+      coord:state.GetCoordinateReducer,
+      sys:state.GetSystemReducer
     };
   }
 
@@ -59,7 +70,8 @@ function MapDispatchToProp(dispatch){
             GETWEATHER:bindActionCreators(weatherActions.GETWEATHER,dispatch),
             GETTEMPARATURE: bindActionCreators(weatherActions.GETTEMPARATURE,dispatch),
             GETCOORDİNATE: bindActionCreators(weatherActions.GETCOORDİNATE, dispatch),
-            GETCITYNAME:bindActionCreators(weatherActions.GETCITYNAME,dispatch)
+            GETCITYNAME:bindActionCreators(weatherActions.GETCITYNAME,dispatch),
+            GETSYSTEM:bindActionCreators(weatherActions.GETSYSTEM,dispatch)
         }
     }
 }
